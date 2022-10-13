@@ -37,4 +37,4 @@ The directory structure should be as follows:
 
 ## Contributors
 
-[![List of Contributors](https://contrib.rocks/image?repo=aerabi/link-shortener-mean)](https://github.com/aerabi/link-shortener-mean/graphs/contributors)
+[![List of Contributors](https://contrib.rocks/image?repo=aerabi/events)](https://github.com/aerabi/events/graphs/contributors)
