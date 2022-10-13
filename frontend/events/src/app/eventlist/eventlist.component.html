@@ -1,0 +1,11 @@
+<ol class="eventlist">
+  <li *ngFor="let event of upcomingEvents">
+    <div>
+      <p>
+        <a class="eventlist-title" href="{{ event.link }}">{{ event.name }}</a>
+        <span class="eventlist-organizer">{{ event.organizer }}</span>
+      </p>
+      <div>{{ event.date.toString() }}</div>
+    </div>
+  </li>
+</ol>
