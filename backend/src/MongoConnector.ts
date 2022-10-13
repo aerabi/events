@@ -12,4 +12,8 @@ export class MongoConnector {
             console.log('Connected to MongoDB', db);
         });
     }
+
+    public static disconnect() {
+        return mongoose.disconnect();
+    }
 }

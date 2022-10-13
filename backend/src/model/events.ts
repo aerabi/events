@@ -4,7 +4,6 @@ import { Model } from 'mongoose';
 type EventType = EventModel & mongoose.Document;
 
 export interface EventModel {
-    id: string;
     name: string;
     link: string;
     date: Date;
@@ -12,7 +11,6 @@ export interface EventModel {
 };
 
 const EventSchema = new mongoose.Schema({
-    id: String,
     name: String,
     link: String,
     date: Date,
