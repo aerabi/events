@@ -1,0 +1,22 @@
+services:
+  frontend:
+    build:
+        context: "./frontend/events"
+        dockerfile: "./Dockerfile"
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: "./Dockerfile"
+  db:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+  proxy:
+    image: nginx:stable-alpine
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.conf
+      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
+    volumes:
+      - ${PWD}/nginx.conf:/etc/nginx/templates/nginx.conf.conf
+    ports:
+      - 80:80
