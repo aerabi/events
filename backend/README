@@ -1,0 +1,7 @@
+This backend depends on a mongodb server running locally on port 27017 (can be configured in .env).
+
+To start one you can for example use docker:
+
+```
+docker run -d -p 27017:27017 --name test-mongo mongo:latest
+```
