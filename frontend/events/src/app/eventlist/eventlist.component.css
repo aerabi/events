@@ -1,0 +1,14 @@
+.eventlist {
+    list-style-type: none;
+}
+
+.eventlist-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.eventlist-organizer {
+    font-style: italic;
+}
