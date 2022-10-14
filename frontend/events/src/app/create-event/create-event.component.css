@@ -1,0 +1,35 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.eventform {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+  background-color: rgb(239, 243, 255);
+  max-width: 800px;
+}
+
+.eventform-list {
+  list-style-type: none;
+}
+
+.eventform-list > li {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.eventform-list > li > input {
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.eventform-list > li > label {
+  width: 100%;
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
