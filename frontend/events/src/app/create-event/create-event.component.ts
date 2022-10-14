@@ -4,25 +4,22 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
-  styleUrls: ['./create-event.component.css', '../app.component.css']
+  styleUrls: ['./create-event.component.css', '../app.component.css'],
 })
 export class CreateEventComponent implements OnInit {
+  eventName = '';
+  eventOrganizer = '';
+  eventLink = '';
+  eventDate = '';
+  eventTime = '';
 
-  eventName: string = "";
-  eventOrganizer: string = "";
-  eventLink: string = "";
-  eventDate: string = "";
-  eventTime: string = "";
+  constructor(private router: Router) {}
 
-
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit(): void {}
 
   createNewEvent() {
     //TODO: implement backend call / call to state management here
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl('');
   }
-
 }
