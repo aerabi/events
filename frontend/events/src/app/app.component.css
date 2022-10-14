@@ -1,0 +1,13 @@
+.positive-button {
+  border-style: none;
+  border-width: 0;
+  font-weight: bold;
+  line-height: 1.5;
+  background-color: rgb(67, 149, 255);
+  font-size: 1.1rem;
+  color: white;
+  width: 40%;
+  align-self: flex-end;
+  border-radius: 5px;
+  cursor: pointer;
+}

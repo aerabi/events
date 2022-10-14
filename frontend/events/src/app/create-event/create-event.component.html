@@ -1,0 +1,24 @@
+<div class="form-wrapper">
+  <form class="eventform">
+    <ul class="eventform-list">
+      <li>
+        <label for="event-name-input">Event Name</label>
+        <input [(ngModel)]="eventName" id="event-name-input" />
+      </li>
+      <li>
+        <label for="organizer-input">Organizer</label>
+        <input [(ngModel)]="eventOrganizer" id="organizer-input" />
+      </li>
+      <li>
+        <label for="link-input">Link to event</label>
+        <input [(ngModel)]="eventLink" id="link-input" />
+      </li>
+      <li>
+        <label for="date-input">Date</label>
+        <input [(ngModel)]="eventDate" type="date" id="date-input" />
+        <input [(ngModel)]="eventTime" type="time" id="date-input" />
+      </li>
+    </ul>
+    <button (click)="createNewEvent()" class="positive-button">Create</button>
+  </form>
+</div>
