@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-event',
@@ -14,13 +15,14 @@ export class CreateEventComponent implements OnInit {
   eventTime: string = "";
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   createNewEvent() {
     //TODO: implement backend call / call to state management here
+    this.router.navigateByUrl("");
   }
 
 }
