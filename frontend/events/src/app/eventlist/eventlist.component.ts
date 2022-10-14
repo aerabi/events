@@ -5,21 +5,17 @@ import { UPCOMING_EVENTS } from '../mock-events';
 @Component({
   selector: 'app-eventlist',
   templateUrl: './eventlist.component.html',
-  styleUrls: ['./eventlist.component.css', '../app.component.css']
+  styleUrls: ['./eventlist.component.css', '../app.component.css'],
 })
 export class EventlistComponent implements OnInit {
-
   upcomingEvents = UPCOMING_EVENTS;
 
-  constructor(private router: Router) {
+  constructor(private router: Router) {}
 
-  }
-
-  ngOnInit(): void {
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit(): void {}
 
   createNewEvent() {
-    this.router.navigateByUrl("createEvent");
+    this.router.navigateByUrl('createEvent');
   }
-
 }

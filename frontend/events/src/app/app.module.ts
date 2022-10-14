@@ -12,20 +12,16 @@ const appRoutes: Routes = [
   { path: 'createEvent', component: CreateEventComponent },
 ];
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventlistComponent,
-    CreateEventComponent
-  ],
+  declarations: [AppComponent, EventlistComponent, CreateEventComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true }, // <-- debugging purposes only
     ),
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
