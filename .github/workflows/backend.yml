@@ -20,6 +20,9 @@ jobs:
               with:
                   node-version: ${{ matrix.node }}
 
+            - name: Start MongoDB
+              uses: supercharge/mongodb-github-action@1.8.0
+
             - name: Cache node_modules
               uses: actions/cache@v2
               with:
@@ -32,3 +35,6 @@ jobs:
 
             - name: Run Build
               run: npm run build
+
+            - name: Run Test
+              run: npm run test
