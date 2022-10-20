@@ -25,4 +25,4 @@ RUN npm ci --production
 COPY --from=build /usr/src/app/dist /app
 
 EXPOSE 8000
-CMD [ "node", "index.js"]
+CMD [ "node", "src/index.js"]
