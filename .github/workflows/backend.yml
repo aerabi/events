@@ -38,3 +38,17 @@ jobs:
 
       - name: Run Test
         run: npm run test
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build backend Docker image
+        run: docker build -t aerabi/event-backend backend
+      - name: Run Snyk to check Docker image for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: aerabi/event-backend
+          args: --file=backend/Dockerfile
