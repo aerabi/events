@@ -107,3 +107,10 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.sarif'
+      - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Snapshots
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ steps.meta.outputs.tags }}
+          format: 'github'
+          output: 'dependency-results.sbom.json'
+          github-pat: ${{ secrets.DEPENDENCY_TREE_PAT }}
