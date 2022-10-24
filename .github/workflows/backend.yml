@@ -76,7 +76,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: aerabi/event-backend
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
           args: --file=backend/Dockerfile
 
   docker_scan_trivy:
@@ -87,8 +87,8 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'share-a-jodel:${{ github.sha }}'
-          format: 'table'
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+          format: 'serif'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
