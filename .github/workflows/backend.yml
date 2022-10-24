@@ -39,12 +39,18 @@ jobs:
       - name: Run Test
         run: npm run test
 
-  docker:
+  docker_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build backend Docker image
         run: docker build -t aerabi/event-backend backend
+
+  docker_scan_snyk:
+    runs-on: ubuntu-latest
+    needs:
+      - docker_build
+    steps:
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
         env:
@@ -52,3 +58,22 @@ jobs:
         with:
           image: aerabi/event-backend
           args: --file=backend/Dockerfile
+
+  docker_scan_trivy:
+    runs-on: ubuntu-latest
+    needs:
+      - docker_build
+    steps:
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'share-a-jodel:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
