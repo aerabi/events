@@ -3,14 +3,20 @@ services:
     build:
         context: "./frontend/events"
         dockerfile: "./Dockerfile"
+  networks:
+    - events_net
   backend:
     build:
       context: "./backend"
       dockerfile: "./Dockerfile"
+    networks:
+      - events_net
   db:
     image: mongo:latest
     ports:
       - 27017:27017
+    networks:
+      - events_net
   proxy:
     image: nginx:stable-alpine
     environment:
@@ -20,3 +26,5 @@ services:
       - ${PWD}/nginx.conf:/etc/nginx/templates/nginx.conf.conf
     ports:
       - 80:80
+    networks:
+      - events_net
