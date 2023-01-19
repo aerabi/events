@@ -1,8 +1,8 @@
 services:
   frontend:
     build:
-        context: "./frontend/events"
-        dockerfile: "./Dockerfile"
+      context: "./frontend/events"
+      dockerfile: "./Dockerfile"
     networks:
       - events_net
   backend:
@@ -28,7 +28,6 @@ services:
       - 80:80
     networks:
       - events_net
-      
-  
-  networks:
-    events_net:
+
+networks:
+  events_net:
