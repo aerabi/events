@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EventCreationRequest } from '../Event';
+import { EventsService } from '../events.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,13 +15,21 @@ export class CreateEventComponent implements OnInit {
   eventDate = '';
   eventTime = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: EventsService) {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
   createNewEvent() {
-    //TODO: implement backend call / call to state management here
-    this.router.navigateByUrl('');
+    const event: EventCreationRequest = {
+      name: this.eventName,
+      organizer: this.eventOrganizer,
+      link: this.eventLink,
+      date: new Date(`${this.eventDate} ${this.eventTime}`),
+    };
+    this.service.create(event).subscribe(createdEvent => {
+      console.log(createdEvent);
+      this.router.navigateByUrl('');
+    });
   }
 }
