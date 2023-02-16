@@ -1,0 +1,33 @@
+name: events
+
+# The build section defines how to build the images of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#build
+build:
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_BACKEND_REGISTRY: image registry
+  #  - OKTETO_BUILD_BACKEND_REPOSITORY: image repo
+  #  - OKTETO_BUILD_BACKEND_IMAGE: image name
+  #  - OKTETO_BUILD_BACKEND_SHA: image tag sha256
+  backend:
+    context: backend
+    dockerfile: Dockerfile
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_FRONTEND_REGISTRY: image registry
+  #  - OKTETO_BUILD_FRONTEND_REPOSITORY: image repo
+  #  - OKTETO_BUILD_FRONTEND_IMAGE: image name
+  #  - OKTETO_BUILD_FRONTEND_SHA: image tag sha256
+  frontend:
+    context: frontend/events
+    dockerfile: Dockerfile
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD__REGISTRY: image registry
+  #  - OKTETO_BUILD__REPOSITORY: image repo
+  #  - OKTETO_BUILD__IMAGE: image name
+  #  - OKTETO_BUILD__SHA: image tag sha256
+# The deploy section defines how to deploy your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#deploy
+deploy:
+  - helm upgrade --install events ./chart --set image.repository=${OKTETO_BUILD_BACKEND_REPOSITORY},image.tag=${OKTETO_BUILD_BACKEND_SHA},frontend.image.repository=${OKTETO_BUILD_FRONTEND_REPOSITORY},frontend.image.tag=${OKTETO_BUILD_FRONTEND_SHA}
