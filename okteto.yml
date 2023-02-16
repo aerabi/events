@@ -23,6 +23,4 @@ build:
     dockerfile: Dockerfile
 
 deploy:
-  - okteto build -t ${OKTETO_BUILD_BACKEND_REPOSITORY}:${OKTETO_BUILD_BACKEND_SHA} -f ./backend/Dockerfile ./backend
-  - okteto build -t ${OKTETO_BUILD_FRONTEND_REPOSITORY}:${OKTETO_BUILD_FRONTEND_SHA} -f ./frontend/events/Dockerfile ./frontend/events
-  - helm upgrade --install events ./chart --set image.repository=${OKTETO_BUILD_BACKEND_REPOSITORY},image.tag=${OKTETO_BUILD_BACKEND_SHA},frontend.image.repository=${OKTETO_BUILD_FRONTEND_REPOSITORY},frontend.image.tag=${OKTETO_BUILD_FRONTEND_SHA}
+  - helm upgrade --install events ./chart --set image.name=${OKTETO_BUILD_BACKEND_IMAGE},frontend.image.name=${OKTETO_BUILD_FRONTEND_IMAGE}

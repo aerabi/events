@@ -5,6 +5,7 @@ image:
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "master"
+  name: ghcr.io/aerabi/events-backend:master
 
 imagePullSecrets: []
 nameOverride: ""
@@ -82,6 +83,7 @@ frontend:
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: "master"
+    name: ghcr.io/aerabi/events-frontend:master
   port: 80
 
   ingress:
