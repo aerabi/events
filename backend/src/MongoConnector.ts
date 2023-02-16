@@ -9,6 +9,7 @@ export class MongoConnector {
     const port = process.env.MONGODB_PORT || '27017';
     const auth = user && pass ? `${user}:${pass}@` : '';
     const uri = `mongodb://${auth}${host}:${port}/${db}`;
+    console.log('Connecting to MongoDB', uri);
     await mongoose.connect(uri, {}).then(() => {
       console.log('Connected to MongoDB', db);
     });
