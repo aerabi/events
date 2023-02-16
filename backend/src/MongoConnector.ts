@@ -2,12 +2,14 @@ import * as mongoose from 'mongoose';
 
 export class MongoConnector {
   public static async connect() {
-    await mongoose.connect(process.env.MONGODB_URI!, {}).then(() => {
-      const indexOfA = process.env.MONGODB_URI!.indexOf('@');
-      const db =
-        indexOfA !== -1
-          ? process.env.MONGODB_URI!.substring(0, 10) + '!_:_!' + process.env.MONGODB_URI!.substring(indexOfA)
-          : process.env.MONGODB_URI;
+    const host = process.env.MONGODB_HOST || 'localhost';
+    const user = process.env.MONGODB_USERNAME;
+    const pass = process.env.MONGODB_PASSWORD;
+    const db = process.env.MONGODB_DATABASE || 'test';
+    const port = process.env.MONGODB_PORT || '27017';
+    const auth = user && pass ? `${user}:${pass}@` : '';
+    const uri = `mongodb://${auth}${host}:${port}/${db}`;
+    await mongoose.connect(uri, {}).then(() => {
       console.log('Connected to MongoDB', db);
     });
   }
