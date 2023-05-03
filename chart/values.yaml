@@ -33,7 +33,26 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 3000
+  port: 8000
+
+ports:
+  api:
+    name: "api"
+    number: 8000
+
+#health:
+#  path: "/api/events"
+#  port: api
+#  liveness:
+#    initialDelaySeconds: 30
+#    periodSeconds: 60
+#    failureThreshold: 2
+#    timeoutSeconds: 20
+#  readiness:
+#    initialDelaySeconds: 30
+#    periodSeconds: 20
+#    failureThreshold: 2
+#    timeoutSeconds: 19
 
 ingress:
   enabled: false

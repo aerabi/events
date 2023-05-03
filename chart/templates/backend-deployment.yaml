@@ -46,19 +46,30 @@ spec:
             - name: MONGODB_DATABASE
               value: events
             - name: MONGODB_HOST
-              value: mongodb
+              value: mongodb.events.svc.cluster.local
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
+            {{- range $key, $val := .Values.ports }}
+            - name: {{ $val.name | quote }}
+              containerPort: {{ $val.number }}
+            {{- end }}
+          {{- if .Values.health }}
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: {{ .Values.health.path }}
+              port: {{ .Values.health.port }}
+            initialDelaySeconds: {{ .Values.health.liveness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.health.liveness.periodSeconds }}
+            timeoutSeconds: {{ .Values.health.liveness.timeoutSeconds }}
+            failureThreshold: {{ .Values.health.liveness.failureThreshold }}
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: {{ .Values.health.path }}
+              port: {{ .Values.health.port }}
+            initialDelaySeconds: {{ .Values.health.readiness.initialDelaySeconds }}
+            periodSeconds: {{ .Values.health.readiness.periodSeconds }}
+            timeoutSeconds: {{ .Values.health.readiness.timeoutSeconds }}
+            failureThreshold: {{ .Values.health.readiness.failureThreshold }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
