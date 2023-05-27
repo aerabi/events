@@ -14,7 +14,7 @@ RUN npm run build
 
 
 
-FROM nginx:stable-alpine
+FROM nginx:mainline-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/events /usr/share/nginx/html
