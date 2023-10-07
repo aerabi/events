@@ -1,4 +1,4 @@
-# Builder container to compile typescript
+# Builder container to compile TypeScript
 FROM node:lts-alpine AS build
 WORKDIR /usr/src/app
 
@@ -9,11 +9,14 @@ RUN npm ci
 
 # Copy the application source
 COPY . .
-# Build typescript
+# Build TypeScript
 RUN npm run build
 
+# Snyk Docker scan
+RUN npm install -g snyk
+RUN snyk test
 
-
+# Final image for serving the application
 FROM nginx:stable-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
