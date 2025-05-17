@@ -1,5 +1,5 @@
 # Builder container to compile typescript
-FROM node:lts-alpine AS build
+FROM node:22.15.1-alpine3.21 AS build
 WORKDIR /usr/src/app
 
 # Install dependencies
@@ -14,7 +14,7 @@ RUN npm run build
 
 
 
-FROM node:lts-alpine
+FROM node:22.15.1-alpine3.21
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
